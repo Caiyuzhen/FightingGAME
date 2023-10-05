@@ -1,0 +1,853 @@
+{
+	"folders": [
+		{
+			"name": "GetStarted",
+			"path": "."
+		},
+		{
+			"name": "UE5",
+			"path": "/Users/UE_5.3"
+		}
+	],
+	"settings": {
+		"typescript.tsc.autoDetect": "off",
+		"npm.autoDetect": "off",
+		"UEIntellisenseFixes.compiler.path": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-vscode.cpptools",
+			"ms-dotnettools.csharp",
+			"vadimcn.vscode-lldb",
+			"ms-vscode.mono-debug",
+			"dfarley1.file-picker"
+		]
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "GetStarted Mac Debug Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"Mac",
+					"Debug",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted Mac Debug Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"Mac",
+					"Debug",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"GetStarted Mac Debug Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted Mac Debug Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"Mac",
+					"Debug",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted Mac DebugGame Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"Mac",
+					"DebugGame",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted Mac DebugGame Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"Mac",
+					"DebugGame",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"GetStarted Mac DebugGame Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted Mac DebugGame Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"Mac",
+					"DebugGame",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted Mac Development Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"Mac",
+					"Development",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted Mac Development Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"Mac",
+					"Development",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"GetStarted Mac Development Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted Mac Development Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"Mac",
+					"Development",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted Mac Test Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"Mac",
+					"Test",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted Mac Test Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"Mac",
+					"Test",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"GetStarted Mac Test Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted Mac Test Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"Mac",
+					"Test",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted Mac Shipping Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"Mac",
+					"Shipping",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted Mac Shipping Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"Mac",
+					"Shipping",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"GetStarted Mac Shipping Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted Mac Shipping Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"Mac",
+					"Shipping",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted IOS Debug Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"IOS",
+					"Debug",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted IOS Debug Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"IOS",
+					"Debug",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"GetStarted IOS Debug Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted IOS Debug Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"IOS",
+					"Debug",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted IOS DebugGame Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"IOS",
+					"DebugGame",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted IOS DebugGame Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"IOS",
+					"DebugGame",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"GetStarted IOS DebugGame Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted IOS DebugGame Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"IOS",
+					"DebugGame",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted IOS Development Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"IOS",
+					"Development",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted IOS Development Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"IOS",
+					"Development",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"GetStarted IOS Development Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted IOS Development Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"IOS",
+					"Development",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted IOS Test Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"IOS",
+					"Test",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted IOS Test Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"IOS",
+					"Test",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"GetStarted IOS Test Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted IOS Test Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"IOS",
+					"Test",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted IOS Shipping Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"IOS",
+					"Shipping",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted IOS Shipping Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"IOS",
+					"Shipping",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"GetStarted IOS Shipping Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStarted IOS Shipping Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStarted",
+					"IOS",
+					"Shipping",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStartedEditor Mac Debug Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStartedEditor",
+					"Mac",
+					"Debug",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStartedEditor Mac Debug Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStartedEditor",
+					"Mac",
+					"Debug",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"GetStartedEditor Mac Debug Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStartedEditor Mac Debug Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStartedEditor",
+					"Mac",
+					"Debug",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStartedEditor Mac DebugGame Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStartedEditor",
+					"Mac",
+					"DebugGame",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStartedEditor Mac DebugGame Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStartedEditor",
+					"Mac",
+					"DebugGame",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"GetStartedEditor Mac DebugGame Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStartedEditor Mac DebugGame Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStartedEditor",
+					"Mac",
+					"DebugGame",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStartedEditor Mac Development Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStartedEditor",
+					"Mac",
+					"Development",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStartedEditor Mac Development Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStartedEditor",
+					"Mac",
+					"Development",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"GetStartedEditor Mac Development Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			},
+			{
+				"label": "GetStartedEditor Mac Development Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+				"args": [
+					"GetStartedEditor",
+					"Mac",
+					"Development",
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/Users/UE_5.3"
+				}
+			}
+		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Launch GetStarted (Debug)",
+				"request": "launch",
+				"program": "/Users/aic/Desktop/GetStarted/Binaries/Mac/UnrealGame-Mac-Debug.app/Contents/MacOS/UnrealGame-Mac-Debug",
+				"preLaunchTask": "GetStarted Mac Debug Build",
+				"args": [
+				],
+				"cwd": "/Users/UE_5.3",
+				"type": "lldb"
+			},
+			{
+				"name": "Launch GetStarted (DebugGame)",
+				"request": "launch",
+				"program": "/Users/aic/Desktop/GetStarted/Binaries/Mac/UnrealGame-Mac-DebugGame.app/Contents/MacOS/UnrealGame-Mac-DebugGame",
+				"preLaunchTask": "GetStarted Mac DebugGame Build",
+				"args": [
+				],
+				"cwd": "/Users/UE_5.3",
+				"type": "lldb"
+			},
+			{
+				"name": "Launch GetStarted (Development)",
+				"request": "launch",
+				"program": "/Users/aic/Desktop/GetStarted/Binaries/Mac/UnrealGame.app/Contents/MacOS/UnrealGame",
+				"preLaunchTask": "GetStarted Mac Development Build",
+				"args": [
+				],
+				"cwd": "/Users/UE_5.3",
+				"type": "lldb"
+			},
+			{
+				"name": "Launch GetStarted (Test)",
+				"request": "launch",
+				"program": "/Users/aic/Desktop/GetStarted/Binaries/Mac/UnrealGame-Mac-Test.app/Contents/MacOS/UnrealGame-Mac-Test",
+				"preLaunchTask": "GetStarted Mac Test Build",
+				"args": [
+				],
+				"cwd": "/Users/UE_5.3",
+				"type": "lldb"
+			},
+			{
+				"name": "Launch GetStarted (Shipping)",
+				"request": "launch",
+				"program": "/Users/aic/Desktop/GetStarted/Binaries/Mac/UnrealGame-Mac-Shipping.app/Contents/MacOS/UnrealGame-Mac-Shipping",
+				"preLaunchTask": "GetStarted Mac Shipping Build",
+				"args": [
+				],
+				"cwd": "/Users/UE_5.3",
+				"type": "lldb"
+			},
+			{
+				"name": "Launch GetStartedEditor (Debug)",
+				"request": "launch",
+				"program": "/Users/UE_5.3/Engine/Binaries/Mac/UnrealEditor-Mac-Debug.app/Contents/MacOS/UnrealEditor-Mac-Debug",
+				"preLaunchTask": "GetStartedEditor Mac Debug Build",
+				"args": [
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject"
+				],
+				"cwd": "/Users/UE_5.3",
+				"type": "lldb"
+			},
+			{
+				"name": "Launch GetStartedEditor (DebugGame)",
+				"request": "launch",
+				"program": "/Users/UE_5.3/Engine/Binaries/Mac/UnrealEditor-Mac-DebugGame.app/Contents/MacOS/UnrealEditor-Mac-DebugGame",
+				"preLaunchTask": "GetStartedEditor Mac DebugGame Build",
+				"args": [
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject"
+				],
+				"cwd": "/Users/UE_5.3",
+				"type": "lldb"
+			},
+			{
+				"name": "Launch GetStartedEditor (Development)",
+				"request": "launch",
+				"program": "/Users/UE_5.3/Engine/Binaries/Mac/UnrealEditor.app/Contents/MacOS/UnrealEditor",
+				"preLaunchTask": "GetStartedEditor Mac Development Build",
+				"args": [
+					"/Users/aic/Desktop/GetStarted/GetStarted.uproject"
+				],
+				"cwd": "/Users/UE_5.3",
+				"type": "lldb"
+			},
+			{
+				"name": "Generate Project Files",
+				"type": "coreclr",
+				"request": "launch",
+				"preLaunchTask": "UnrealBuildTool Mac Development Build",
+				"program": "/Users/UE_5.3/Engine/Build/BatchFiles/RunUBT.bat",
+				"args": [
+					"-projectfiles",
+					"-vscode",
+					"-project=/Users/aic/Desktop/GetStarted/GetStarted.uproject",
+					"-game",
+					"-engine",
+					"-dotnet"
+				],
+				"console": "internalConsole",
+				"internalConsoleOptions": "openOnSessionStart",
+				"stopAtEntry": false,
+				"cwd": "/Users/UE_5.3"
+			}
+		]
+	}
+}

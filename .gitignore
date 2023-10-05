@@ -1,0 +1,42 @@
+Binaries/
+DerivedDataCache/
+Intermediate/
+#Content/
+Saved/
+.vscode
+.vs
+*.VC.db
+*.opensdf
+*.opendb
+*.sdf
+*.sln
+*.suo
+*.xcodeproj
+*.xcworkspace
+cmake-build-debug/
+cmake-build-release/
+# Content/__ExternalActors__/
+# Content/__ExternalObjects__/
+# Content/Characters/
+# Content/Collections/
+# Content/Cursor/
+# Content/Developers/
+# Content/LevelPrototyping/
+# Content/StarterContent/
+Content/
+.DS_Store
+.DS_Store/
+.idea/
+Source/GetStarted/GetStarted.Build.cs
+Source/GetStarted/GetStarted.cpp
+Source/GetStarted/GetStarted.h
+Source/GetStarted/GetStartedGameModeBase.cpp
+Source/GetStarted/GetStartedGameModeBase.h
+Source/GetStartedEditor.Target.cs
+Source/GetStarted.Target.cs
+
+
+
+
+
+
