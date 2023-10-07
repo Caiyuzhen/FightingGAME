@@ -24,8 +24,8 @@ class GETSTARTED_API AMainPlayer : public ACharacter {
 
 
 		// 键盘玩家的转向变量
-		float BaseTurnRate; // 基础转向率
-		float BaseLookUpRate; // 基础上下看率
+		float BaseTurnRate; // 🔥基础转向率 - 因为键盘每次按下只有 1 或 -1， 所以要乘以一个比较大的值, 不然会旋转得很小
+		float BaseLookUpRate; // 🔥基础上下看率 - 因为键盘每次按下只有 1 或 -1， 所以要乘以一个比较大的值, 不然会旋转得很小
 
 
 

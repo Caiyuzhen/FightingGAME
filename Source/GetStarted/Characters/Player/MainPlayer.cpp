@@ -31,7 +31,7 @@ void AMainPlayer::BeginPlay() {
 	Super::BeginPlay();
 }
 
-void AMainPlayer::Tick(float DeltaTime) {
+void AMainPlayer::Tick(float DeltaTime) { // DeltaTime 是时间间隔, 用来平衡不同设备的帧率
 	Super::Tick(DeltaTime);
 }
 
@@ -65,13 +65,14 @@ void AMainPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	GetCharacterMovement() -> bOrientRotationToMovement = true; //🌟让角色朝着移动的方向旋转 【UE 内置的方法, 可以在蓝图里边的（奔跑角色移动）看到 】
 	GetCharacterMovement() -> RotationRate = FRotator(0.0f, 540.0f, 0.0f); //🌟设置角色的旋转速率 【UE 内置的方法, 可以在蓝图里边的（奔跑角色移动）看到 】 => 不是一个函数, 只是一个变量, 所以要写 =
 
-	BaseTurmRate = 65.0f;
-	BaseLookUpRate = 65.0f;
+	BaseTurnRate = 65.0f; // 🔥因为键盘每次按下只有 1 或 -1， 所以要乘以一个比较大的值, 不然会旋转得很小
+	BaseLookUpRate = 65.0f; // 🔥因为键盘每次按下只有 1 或 -1， 所以要乘以一个比较大的值, 不然会旋转得很小
 }
 
 
 
-// 🌟几个轴映射功能（前后左右移动）的【具体实现】, 需要考虑性能跟安全性, 因为轴映射会一直返回值, 要避免 Controller 为空指针或者一直返回 0 
+// 👇 几个轴映射功能（前后左右移动 + 上下左右看）的【具体实现】, 需要考虑性能跟安全性, 因为轴映射会一直返回值, 要避免 Controller 为空指针或者一直返回 0 
+// 🌟 前后奔跑
 void AMainPlayer::MoveForward(float Value) {
 	// AddMovementInput(GetActorForwardVector(), Value); //👈【简单版】注意, Pawn 类不能调用, Characters 类才能调用 !!  两个参数: 【向世界的哪个方向移动】 【移动的值（移动多远）】, GetActorForwardVector 表示向角色正面方向移动
 
@@ -84,7 +85,8 @@ void AMainPlayer::MoveForward(float Value) {
 	}
 }
 
-// 🌟 前后左右轴映射的实现
+
+// 🌟 左右奔跑
 void AMainPlayer::MoveRight(float Value) {
 	// AddMovementInput(GetActorRightVector(), Value); //👈【简单版】注意, Pawn 类不能调用, Characters 类才能调用 !!  两个参数: 【向世界的哪个方向移动】 【移动的值（移动多远）】, GetActorForwardVector 表示向角色正面方向移动
 	// 【👇复杂版 - 摄像机能够旋转到角色前方, 几何学】利用旋转矩阵获取 Controller 的旋转值, 从而【让摄像机能够旋转到角色前方】
@@ -96,27 +98,55 @@ void AMainPlayer::MoveRight(float Value) {
 	}
 }
 
-// 🌟 鼠标转向 + 键盘转向的实现
+// 🌟 鼠标左右看
 void AMainPlayer::Turn(float Value) {
 	if(Value != 0.0f) {
-		AddControllerYawInput(Value)
+		AddControllerYawInput(Value); 
 	}
 }
 
+
+// 🌟 鼠标上下看
 void AMainPlayer::LookUp(float Value) {
+	UE_LOG(LogTemp, Warning, TEXT("%f"), Controller -> GetControlRotation().Pitch); // 👀 观察下鼠标上下看的值, 打印在【输出日志】中, 发现范围是 0/360 ~ 45, 0, 0/360 ~270 这个范围最佳
+	//👇会有 bug, UE 内部机制, 快速直接推会推到 46 度, 然后就会卡住了⚠️, 所以要用下面的方法
+	// if((GetControlRotation().Pitch > 270.0f && GetControlRotation().Pitch <= 360.0f) ||
+	//   (GetControlRotation().Pitch >= 0.0f && GetControlRotation().Pitch < 45.0f))
+	// {...}
+	// 👇判断非法区域, 限制上下看的范围
+	if(GetControlRotation().Pitch < 270.0f && GetControlRotation().Pitch > 180.0f && Value > 0.0f){  // && Value > 0.0f 表示如果在非法区域(旋转到最顶部了)还继续要往大旋转, 则进行阻止
+		return; 
+	}	
+	if(GetControlRotation().Pitch > 45.0f && GetControlRotation().Pitch < 180.0f && Value < 0.0f) { // && Value < 0.0f 表示如果在非法区域(旋转到最底部了)还继续要往小旋转, 则进行阻止
+		return;
+	}
+	//其他区域则合法, 可以上下看
+	AddControllerPitchInput(Value); //鼠标上下看
+}
+
+
+// 🌟 键盘左右看的实现
+void AMainPlayer::TurnAtRate(float KeyboardRate) { // 键盘上下左右旋转事件, 所以 Rate 不是 0 就是 1 就是 -1, 所以要乘以一个比较大的值, 不然会旋转得很小
+	float Value = KeyboardRate *  BaseTurnRate * GetWorld() -> GetDeltaSeconds(); // 【BaseTurmRate】为👆上面定义的变量, GetWorld().GetDeltaSeconds() 表示获得时间间隔 deltaTime, 用来平衡不同设备的帧率
 	if(Value != 0.0f) {
-		AddControllerPitchnput(Value)
+		AddControllerYawInput(Value); // 键盘左右看
 	}
 }
 
-void AMainPlayer::TurnAtRate(float Rate) { // 键盘上下左右旋转事件, 所以 Rate 不是 0 就是 1 就是 -1, 所以要乘以一个比较大的值, 不然会旋转得很小
-	if(Rate != 0.0f) {
-		AddControllerPitchnput(Value)
-	}
-}
 
-void AMainPlayer::LookUpAtRate(float Rate) { // 键盘上下左右旋转事件, 所以 Rate 不是 0 就是 1 就是 -1, 所以要乘以一个比较大的值, 不然会旋转得很小
-	if(Rate != 0.0f) {
-		AddControllerPitchnput(Value)
+// 🌟 键盘上下看的实现
+void AMainPlayer::LookUpAtRate(float KeyboardRate) { // 键盘上下左右旋转事件, 所以 Rate 不是 0 就是 1 就是 -1, 所以要乘以一个比较大的值, 不然会旋转得很小
+	float Value = KeyboardRate *  BaseLookUpRate * GetWorld() -> GetDeltaSeconds(); // GetWorld().GetDeltaSeconds() 表示获得时间间隔 deltaTime, 用来平衡不同设备的帧率
+	// 👇没有限制上下看范围的做法
+	// if(Value != 0.0f) {
+	// 	AddControllerPitchInput(-Value); // 键盘上下看, -Value 是因为实际测试上要相反, 希望下键可以向下旋转
+	// }
+	// 👇判断非法区域, 限制上下看的范围
+	if(GetControlRotation().Pitch < 270.0f && GetControlRotation().Pitch > 180.0f && Value > 0.0f){  // && Value > 0.0f 表示如果在非法区域(旋转到最顶部了)还继续要往大旋转, 则进行阻止
+		return; 
+	}	
+	if(GetControlRotation().Pitch > 45.0f && GetControlRotation().Pitch < 180.0f && Value < 0.0f) { // && Value < 0.0f 表示如果在非法区域(旋转到最底部了)还继续要往小旋转, 则进行阻止
+		return;
 	}
+	AddControllerPitchInput(-Value); // 键盘上下看, -Value 是因为实际测试上要相反, 希望下键可以向下旋转
 }
