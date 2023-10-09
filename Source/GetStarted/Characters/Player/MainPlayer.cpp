@@ -37,15 +37,20 @@ void AMainPlayer::Tick(float DeltaTime) { // DeltaTime 是时间间隔, 用来�
 
 
 
-// 👇 自动生成的函数, 在这里取来【绑定】输入的轴映射 ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+// 👇 自动生成的函数, 在这里取来【绑定】输入的轴映射 (第一步, 绑定轴映射) ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 void AMainPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 	check(PlayerInputComponent); // 检查输入是否有效, 记得引入 PlayerInputComponent 的 .h 头文件！
 
+	// 👇 【动作事件】
+	PlayerInputComponent -> BindAction("Jump", IE_Pressed, this, &AMainPlayer::Jump); // IE_Pressed 表示绑定按下按键的事件, Jump 方法为内置好的方法
+	PlayerInputComponent -> BindAction("Jump", IE_Released, this, &ACharacter::StopJumping); // IE_Released 表示绑定松开按键的事件, StopJumping 方法为内置好的方法
+
+
 	// 👇【轴事件, 会不断的调用】前后移动用 AMainPlayer, 左右旋转用 Controller 的 Yaw, ⚠️ 但是 上下旋转 要让悬臂（SpringArm）进行 Pitch , 否则整个角色都会翻转面向地面 !!
-	PlayerInputComponent -> BindAxis("MoveForward", this, &AMainPlayer::MoveForward); //【轴映射的名称 - 前后看 y 轴】、【绑定哪个类的轴映射(其实就是当前 AMainPlayer 这个类)】、【函数的指针(&用来取地址)】
-	PlayerInputComponent -> BindAxis("MoveRight", this, &AMainPlayer::MoveRight); //【轴映射的名称 - 左右看 x 轴】、【绑定哪个类的轴映射(其实就是当前 AMainPlayer 这个类)】、【函数的指针(&用来取地址)】
+	PlayerInputComponent -> BindAxis("MoveForward", this, &AMainPlayer::MoveForward); //MoveForward 为下方声明的函数！【轴映射的名称 - 前后看 y 轴】、【绑定哪个类的轴映射(其实就是当前 AMainPlayer 这个类)】、【函数的指针(&用来取地址)】
+	PlayerInputComponent -> BindAxis("MoveRight", this, &AMainPlayer::MoveRight); //MoveRight 为下方声明的函数！【轴映射的名称 - 左右看 x 轴】、【绑定哪个类的轴映射(其实就是当前 AMainPlayer 这个类)】、【函数的指针(&用来取地址)】
 
 	// 【自己定义鼠标跟键盘转向事件后, 这么写, 👉表示用 &取地址, 引用 AMainPlayer 类中的 Turn 方法！👈】
 	PlayerInputComponent -> BindAxis("Turn", this, &AMainPlayer::Turn); //【轴映射的名称 - 左右看 z 轴, Yaw Pitch】、【绑定哪个类的轴映射(其实就是当前 AMainPlayer 这个类)】、【函数的指针(&用来取地址)】
@@ -65,13 +70,25 @@ void AMainPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	GetCharacterMovement() -> bOrientRotationToMovement = true; //🌟让角色朝着移动的方向旋转 【UE 内置的方法, 可以在蓝图里边的（奔跑角色移动）看到 】
 	GetCharacterMovement() -> RotationRate = FRotator(0.0f, 540.0f, 0.0f); //🌟设置角色的旋转速率 【UE 内置的方法, 可以在蓝图里边的（奔跑角色移动）看到 】 => 不是一个函数, 只是一个变量, 所以要写 =
 
+	// 角色跳跃的参数
+	GetCharacterMovement() -> JumpZVelocity = 500.0f; // 跳跃高度
+	GetCharacterMovement() -> AirControl = 0.15f; // 在空中的位移灵敏度
+
+
 	BaseTurnRate = 65.0f; // 🔥因为键盘每次按下只有 1 或 -1， 所以要乘以一个比较大的值, 不然会旋转得很小
 	BaseLookUpRate = 65.0f; // 🔥因为键盘每次按下只有 1 或 -1， 所以要乘以一个比较大的值, 不然会旋转得很小
 }
 
 
 
-// 👇 几个轴映射功能（前后左右移动 + 上下左右看）的【具体实现】, 需要考虑性能跟安全性, 因为轴映射会一直返回值, 要避免 Controller 为空指针或者一直返回 0 
+
+
+// 👇 几个轴映射功能 : 前后左右移动 + 上下左右看的【具体实现】(第二步, 具体实现) , 需要考虑性能跟安全性, 因为轴映射会一直返回值, 要避免 Controller 为空指针或者一直返回 0
+// 🌟 角色跳跃功能
+void AMainPlayer::Jump() {
+	Super::Jump(); //👈继承【父类的跳跃方法】
+}
+
 // 🌟 前后奔跑
 void AMainPlayer::MoveForward(float Value) {
 	// AddMovementInput(GetActorForwardVector(), Value); //👈【简单版】注意, Pawn 类不能调用, Characters 类才能调用 !!  两个参数: 【向世界的哪个方向移动】 【移动的值（移动多远）】, GetActorForwardVector 表示向角色正面方向移动
@@ -150,3 +167,4 @@ void AMainPlayer::LookUpAtRate(float KeyboardRate) { // 键盘上下左右旋转
 	}
 	AddControllerPitchInput(-Value); // 键盘上下看, -Value 是因为实际测试上要相反, 希望下键可以向下旋转
 }
+

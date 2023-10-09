@@ -37,8 +37,11 @@ class GETSTARTED_API AMainPlayer : public ACharacter {
 	// 第二个 public 一般声明一些函数
 	public:	
 		virtual void Tick(float DeltaTime) override;
-
 		virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+
+		// 🌟 声明让角色跳跃的方法
+		virtual void Jump() override;
 
 		// 🌟 声明前后左右的轴映射
 		void MoveForward(float Value);
