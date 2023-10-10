@@ -28,8 +28,8 @@ class GETSTARTED_API UMainPlayerAnimInstance : public UAnimInstance {
 
 	// 👇这个 public 用来放置一些函数
 	public:
-		virtal void NativeInitializeAnimation() override; // 👈 这个函数用来初始化动画, 在动画初始化时被调用, virtal 表示这个函数可以被重写, 这里我们自己重写这个函数!!
+		virtual void NativeInitializeAnimation() override; // 👈 这个函数用来初始化动画, 在动画初始化时被调用, virtual 表示这个函数可以被重写, 这里我们自己重写这个函数!!
 
-		UPROPERTY(BlueprintCallable, Category = "Animation Movement Function");// 👈 【BlueprintCallable】用来在蓝图内可调用!!
+		UFUNCTION(BlueprintCallable, Category = "Animation Movement Function")// 👈 【BlueprintCallable】用来在蓝图内可调用!! 🔥这里是 UFUNCTION !!! 而不是  UPROPERTY !!!
 		void UpdateAnimationProperties(); // 这个函数用来更新上面的动画属性
 };
